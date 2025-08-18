@@ -1,12 +1,11 @@
-# Health Monitor
 Health Monitor
-# Projeto: Natalidade vs Saúde Pública nos Estados Brasileiros
+Project: Birth Rate vs Public Health in Brazilian States
 
-Objetivo: analisar a relação entre taxa de natalidade, mortalidade infantil, gastos de saúde e outros indicadores públicos nos estados brasileiros. Dados provenientes do **IBGE** e **DataSUS**.
+Objective: Analyze the relationship between birth rate, infant mortality, healthcare spending, and other public indicators across Brazilian states. Data sourced from IBGE and DataSUS.
 
-**Fases do projeto:**
-1. Coleta de dados públicos (IBGE, SUS, etc)
-2. Limpeza e padronização dos dados (CSV → data/processed)
-3. Análise exploratória (correlação, visualizações)
-4. Clusterização de estados
-5. (Opcional) Previsão de taxa de natalidade
+Project Phases:
+Collection of public data (IBGE, SUS, etc.)
+Data cleaning and standardization (CSV → data/processed)
+Exploratory analysis (correlation, visualizations)
+Clustering of states based on health indicators
+(Optional) Birth rate prediction modeling
