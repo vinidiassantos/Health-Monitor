@@ -98,3 +98,44 @@ function atualizarGraficoIndicadores(data) {
     type: 'radar',
     data: {
       labels: estados,
+      datasets: [
+        {
+          label: 'Investimento em Saúde (R$ milhões)',
+          data: investimento,
+          backgroundColor: 'rgba(255, 99, 132, 0.2)',
+          borderColor: 'rgba(255, 99, 132, 1)',
+          borderWidth: 1
+        },
+        {
+          label: 'Natalidade (por mil hab.)',
+          data: natalidade,
+          backgroundColor: 'rgba(54, 162, 235, 0.2)',
+          borderColor: 'rgba(54, 162, 235, 1)',
+          borderWidth: 1
+        },
+        {
+          label: 'Mortalidade (por mil hab.)',
+          data: mortalidade,
+          backgroundColor: 'rgba(255, 206, 86, 0.2)',
+          borderColor: 'rgba(255, 206, 86, 1)',
+          borderWidth: 1
+        },
+        {
+          label: 'Cobertura SUS (%)',
+          data: cobertura,
+          backgroundColor: 'rgba(75, 192, 192, 0.2)',
+          borderColor: 'rgba(75, 192, 192, 1)',
+          borderWidth: 1
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        r: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+}
