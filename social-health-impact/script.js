@@ -1,8 +1,8 @@
-fetch('/api/dados')
+fetch('/api/estados')
   .then(response => response.json())
   .then(data => {
-    const estados = data.map(item => item.uf);
-    const natalidade = data.map(item => item.natalidade_total); // ajuste conforme o nome da coluna
+    const estados = data.map(item => item.nome);
+    const codigos = data.map(item => item.id);
 
     const ctx = document.getElementById('chart').getContext('2d');
     new Chart(ctx, {
@@ -10,10 +10,10 @@ fetch('/api/dados')
       data: {
         labels: estados,
         datasets: [{
-          label: 'Natalidade',
-          data: natalidade,
-          backgroundColor: 'rgba(75, 192, 192, 0.6)',
-          borderColor: 'rgba(75, 192, 192, 1)',
+          label: 'Código IBGE por Estado',
+          data: codigos,
+          backgroundColor: 'rgba(54, 162, 235, 0.6)',
+          borderColor: 'rgba(54, 162, 235, 1)',
           borderWidth: 1
         }]
       },
