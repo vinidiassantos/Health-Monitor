@@ -1,24 +1,30 @@
-// Exemplo: dados simulados de ansiedade vs. tempo de tela
-const data = [
-  { screenTime: 2, anxietyLevel: 3 },
-  { screenTime: 4, anxietyLevel: 5 },
-  { screenTime: 6, anxietyLevel: 7 },
-  { screenTime: 8, anxietyLevel: 9 }
-];
+fetch('/api/dados')
+  .then(response => response.json())
+  .then(data => {
+    const estados = data.map(item => item.uf);
+    const natalidade = data.map(item => item.natalidade_total); // ajuste conforme o nome da coluna
 
-const trace = {
-  x: data.map(d => d.screenTime),
-  y: data.map(d => d.anxietyLevel),
-  mode: 'markers+lines',
-  type: 'scatter',
-  marker: { color: 'blue' },
-  name: 'Anxiety vs. Screen Time'
-};
-
-const layout = {
-  title: 'Anxiety Level vs. Screen Time',
-  xaxis: { title: 'Screen Time (hours/day)' },
-  yaxis: { title: 'Anxiety Level (scale 1–10)' }
-};
-
-Plotly.newPlot('chart', [trace], layout);
+    const ctx = document.getElementById('chart').getContext('2d');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: estados,
+        datasets: [{
+          label: 'Natalidade',
+          data: natalidade,
+          backgroundColor: 'rgba(75, 192, 192, 0.6)',
+          borderColor: 'rgba(75, 192, 192, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  })
+  .catch(error => console.error('Erro ao carregar dados:', error));
