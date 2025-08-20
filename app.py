@@ -2,7 +2,6 @@ import os
 from flask import Flask, jsonify, send_from_directory
 import pandas as pd
 
-# 🔹 Define a pasta onde estão os arquivos estáticos (HTML, CSS, JS)
 app = Flask(__name__, static_folder='social-health-impact')
 
 # 🔹 Rotas de frontend
@@ -34,21 +33,20 @@ def indicadores():
     df = pd.read_csv('social-health-impact/data/processed/indicadores_saude.csv')
     return jsonify(df.to_dict(orient='records'))
 
-# 🔹 Execução do servidor
-if __name__ == '__main__':
-    # Railway define a porta via variável de ambiente PORT
-    port = int(os.environ.get('PORT', 8080))
-    app.run(debug=False, host='0.0.0.0', port=port)
-
-# Rota adicional para dados integrados
+# 🔹 Rota adicional para dados integrados
 @app.route('/api/dados-integrados')
 def dados_integrados():
     df = pd.read_csv('social-health-impact/data/raw/dados_integrados.csv')
     return jsonify(df.to_dict(orient='records'))
 
-# Rota para investimento em natalidade
+# 🔹 Rota para investimento em natalidade
 @app.route('/api/investimento-natalidade')
 def investimento_natalidade():
     df = pd.read_csv('social-health-impact/data/raw/dados_integrados.csv')
     agrupado = df.groupby('estado')[['investimento_total', 'natalidade']].mean().reset_index()
     return jsonify(agrupado.to_dict(orient='records'))
+
+# 🔹 Execução do servidor
+if __name__ == '__main__':
+    port = int(os.environ.get('PORT', 8080))
+    app.run(debug=False, host='0.0.0.0', port=port)
