@@ -139,3 +139,39 @@ function atualizarGraficoIndicadores(data) {
     }
   });
 }
+
+fetch('/api/dados-integrados')
+  .then(res => res.json())
+  .then(data => {
+    const estados = [...new Set(data.map(d => d.estado))];
+    const anos = [...new Set(data.map(d => d.ano))];
+
+    const datasets = estados.map(estado => {
+      return {
+        label: estado,
+        data: anos.map(ano => {
+          const registro = data.find(d => d.estado === estado && d.ano === ano);
+          return registro ? registro.investimento_total : 0;
+        }),
+        borderWidth: 2
+      };
+    });
+
+    const ctx = document.getElementById('chartInvestimento').getContext('2d');
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: anos,
+        datasets: datasets
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          title: {
+            display: true,
+            text: 'Investimento em Saúde por Estado (R$ milhões)'
+          }
+        }
+      }
+    });
+  });

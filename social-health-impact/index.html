@@ -1,33 +1,36 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Health Monitor | Birth Rate vs Public Health in Brazilian States</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <title>Monitor de Saúde Pública</title>
+  <link rel="stylesheet" href="style.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-  <h1>📊 Health Monitor | Birth Rate vs Public Health in Brazilian States</h1>
+  <h1>📊 Monitor de Saúde Pública</h1>
 
-  <!-- 🔹 Filtro por Estado -->
-  <label for="estadoSelect">Filtrar por Estado:</label>
-  <select id="estadoSelect">
-    <option value="todos">Todos os Estados</option>
-  </select>
-
-  <!-- 🔹 Botões de alternância -->
-  <div style="margin: 20px 0;">
-    <button onclick="mostrarGrafico('ibge')">Ver Código IBGE</button>
-    <button onclick="mostrarGrafico('indicadores')">Ver Indicadores de Saúde</button>
+  <!-- 🔘 Botões de alternância -->
+  <div>
+    <button onclick="mostrarGrafico('ibge')">Código IBGE</button>
+    <button onclick="mostrarGrafico('indicadores')">Indicadores de Saúde</button>
+    <button onclick="mostrarGrafico('investimento')">Investimento por Estado</button>
+    <button onclick="exportarGrafico()">📤 Exportar Gráfico</button>
   </div>
 
-  <!-- 🔹 Gráficos -->
-  <canvas id="chart" width="600" height="400" style="display: block;"></canvas>
-  <canvas id="chart2" width="600" height="400" style="display: none;"></canvas>
+  <!-- 🔽 Filtro de estado (usado no gráfico de indicadores) -->
+  <div>
+    <label for="estadoSelect">Filtrar por estado:</label>
+    <select id="estadoSelect">
+      <option value="todos">Todos</option>
+    </select>
+  </div>
 
-  <!-- 🔹 Exportar gráfico -->
-  <button onclick="exportarGrafico()">📥 Baixar Gráfico</button>
+  <!-- 📊 Gráficos -->
+  <div style="width: 800px; margin-top: 20px;">
+    <canvas id="chart" width="800" height="400" style="display: block;"></canvas>
+    <canvas id="chart2" width="800" height="400" style="display: none;"></canvas>
+    <canvas id="chartInvestimento" width="800" height="400" style="display: none;"></canvas>
+  </div>
 
   <script src="script.js"></script>
 </body>

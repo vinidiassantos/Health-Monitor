@@ -39,3 +39,9 @@ if __name__ == '__main__':
     # Railway define a porta via variável de ambiente PORT
     port = int(os.environ.get('PORT', 8080))
     app.run(debug=False, host='0.0.0.0', port=port)
+
+# Rota adicional para dados integrados
+@app.route('/api/dados-integrados')
+def dados_integrados():
+    df = pd.read_csv('social-health-impact/data/raw/dados_integrados.csv')
+    return jsonify(df.to_dict(orient='records'))
