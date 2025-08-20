@@ -2,10 +2,10 @@ import os
 from flask import Flask, jsonify, send_from_directory
 import pandas as pd
 
-# 🔹 Define a pasta onde estão os arquivos estáticos (HTML, CSS, JS)
+# Define a pasta estática corretamente
 app = Flask(__name__, static_folder='social-health-impact')
 
-# 🔹 Rotas de frontend
+# 🔹 Rotas de frontend (arquivos estáticos)
 @app.route('/')
 def index():
     return send_from_directory(app.static_folder, 'index.html')
@@ -34,8 +34,13 @@ def indicadores():
     df = pd.read_csv('social-health-impact/data/processed/indicadores_saude.csv')
     return jsonify(df.to_dict(orient='records'))
 
-# 🔹 Execução do servidor
+# 🔹 Execução do servidor (ajuste para Render)
 if __name__ == '__main__':
-    # Railway define a porta via variável de ambiente PORT
-    port = int(os.environ.get('PORT', 8080))
+    port = int(os.environ.get('PORT', 5000))
+    app.run(debug=False, host='0.0.0.0', port=port)
+
+# Ajuste para Railway
+# Railway usa a porta 8080 por padrão, então vamos garantir que o app use essa
+if __name__ == '__main__':
+    port = int(os.environ.get('PORT', 8080))  # Porta 8080 é a que Railway está usando
     app.run(debug=False, host='0.0.0.0', port=port)
