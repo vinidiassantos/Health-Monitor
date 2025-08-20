@@ -1,6 +1,8 @@
+import os
 from flask import Flask, jsonify, send_from_directory
 import pandas as pd
 
+# Define a pasta estática corretamente
 app = Flask(__name__, static_folder='social-health-impact')
 
 # 🔹 Rotas de frontend (arquivos estáticos)
@@ -32,6 +34,7 @@ def indicadores():
     df = pd.read_csv('social-health-impact/data/processed/indicadores_saude.csv')
     return jsonify(df.to_dict(orient='records'))
 
-# 🔹 Execução do servidor
+# 🔹 Execução do servidor (ajuste para Render)
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(debug=False, host='0.0.0.0', port=port)
