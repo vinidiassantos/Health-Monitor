@@ -45,3 +45,10 @@ if __name__ == '__main__':
 def dados_integrados():
     df = pd.read_csv('social-health-impact/data/raw/dados_integrados.csv')
     return jsonify(df.to_dict(orient='records'))
+
+# Rota para investimento em natalidade
+@app.route('/api/investimento-natalidade')
+def investimento_natalidade():
+    df = pd.read_csv('social-health-impact/data/raw/dados_integrados.csv')
+    agrupado = df.groupby('estado')[['investimento_total', 'natalidade']].mean().reset_index()
+    return jsonify(agrupado.to_dict(orient='records'))

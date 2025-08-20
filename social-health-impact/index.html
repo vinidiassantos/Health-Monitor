@@ -15,6 +15,8 @@
     <button onclick="mostrarGrafico('indicadores')">Indicadores de Saúde</button>
     <button onclick="mostrarGrafico('investimento')">Investimento por Estado</button>
     <button onclick="exportarGrafico()">📤 Exportar Gráfico</button>
+    <button onclick="mostrarGrafico('comparativo')">Comparar Investimento vs Natalidade</button>
+
   </div>
 
   <!-- 🔽 Filtro de estado (usado no gráfico de indicadores) -->
@@ -30,6 +32,7 @@
     <canvas id="chart" width="800" height="400" style="display: block;"></canvas>
     <canvas id="chart2" width="800" height="400" style="display: none;"></canvas>
     <canvas id="chartInvestimento" width="800" height="400" style="display: none;"></canvas>
+    <canvas id="chartComparativo" width="800" height="400" style="display: none;"></canvas>
   </div>
 
   <script src="script.js"></script>

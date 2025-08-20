@@ -175,3 +175,10 @@ fetch('/api/dados-integrados')
       }
     });
   });
+
+  function mostrarGrafico(tipo) {
+  document.getElementById('chart').style.display = tipo === 'ibge' ? 'block' : 'none';
+  document.getElementById('chart2').style.display = tipo === 'indicadores' ? 'block' : 'none';
+  document.getElementById('chartInvestimento').style.display = tipo === 'investimento' ? 'block' : 'none';
+  document.getElementById('chartComparativo').style.display = tipo === 'comparativo' ? 'block' : 'none';
+}
